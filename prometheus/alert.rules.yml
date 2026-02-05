@@ -1,0 +1,11 @@
+groups:
+- name: server-alerts
+  rules:
+  - alert: ServerDown
+    expr: up == 0
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Server Down"
+      description: "Node exporter tidak merespon."

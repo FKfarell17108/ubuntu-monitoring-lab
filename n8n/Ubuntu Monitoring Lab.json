@@ -1,0 +1,110 @@
+{
+  "name": "Ubuntu Monitoring Lab",
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "6900296278",
+        "text": "=🚨 ALERT SERVER\n\nStatus: {{ $json.body.status }}\nService: {{ $json.body.labels?.alertname || \"N/A\" }}\nInstance: {{ $json.body.labels?.instance || \"N/A\" }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        640,
+        16
+      ],
+      "id": "f94fc5f6-6042-46ad-bcd9-8cbf5f7034a1",
+      "name": "Send a text message",
+      "webhookId": "0bcab750-81c0-4675-9811-3c8026de8bb0",
+      "credentials": {
+        "telegramApi": {
+          "id": "yRzUlKSSkTEDHQls",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "server-alert",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c154bba7-6aba-4e52-8840-b38fa2e81479",
+      "name": "Webhook",
+      "webhookId": "0c2adbbb-e181-468b-a9c2-5ba38fda21ad"
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "alert_logs",
+          "mode": "list",
+          "cachedResultName": "alert_logs"
+        },
+        "dataMode": "={{$json[\"status\"]}}\n{{$json[\"labels\"][\"alertname\"]}}\n{{$json[\"labels\"][\"instance\"]}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        288,
+        -16
+      ],
+      "id": "0dc8d1e3-ba74-436a-8268-1377efcdfd35",
+      "name": "Insert rows in a table",
+      "credentials": {
+        "mySql": {
+          "id": "Ij6auQ0jlz8oByMi",
+          "name": "MySQL account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Insert rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        []
+      ]
+    },
+    "Insert rows in a table": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "31fb0e2b-13a7-4ff6-8cad-c30b47ed6bd2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3c238c99802346343031062f2ea839e698eac793c6bea69277bb6748056d3f4e"
+  },
+  "id": "aNBiIXTqZoUEqiEt",
+  "tags": []
+}
