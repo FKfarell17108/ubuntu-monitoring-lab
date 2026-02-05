@@ -19,7 +19,7 @@ Alert dikirim ke n8n lalu diteruskan ke Telegram dan database.
 - Dummy web service monitoring
 
 ## Stack
-- Ubuntu Server 22.04
+- Ubuntu Server
 - Nginx
 - Prometheus
 - Grafana
@@ -38,4 +38,5 @@ Lihat folder `/docs/setup-steps.md`
 - https://github.com/prometheus/prometheus/releases/
 
 ## Author
+
 Farell Kurniawan
