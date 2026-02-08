@@ -64,7 +64,7 @@ git clone https://github.com/FKfarell17108/ubuntu-monitoring-lab.git
 cd ubuntu-monitoring-lab
 ```
    
-2. **Jalankan Docker Compose  **
+2. **Jalankan Docker Compose**
 ```bash
 docker compose up -d
 ```
@@ -95,4 +95,5 @@ Server down → Prometheus → n8n → Telegram + Database log
 
 Hak cipta © 2026 Farell Kurniawan. Semua hak dilindungi undang-undang.  
 Distribusi dan penggunaan kode ini diizinkan sesuai dengan ketentuan lisensi **MIT**.
+
 
