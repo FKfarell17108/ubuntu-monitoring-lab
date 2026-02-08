@@ -2,7 +2,7 @@
 
 **Lab monitoring server** yang dibuat untuk memantau infrastruktur dan otomatisasi alert menggunakan Prometheus, Grafana, n8n, dan MariaDB.
 
-![breastguard](docs/images/grafana-monitoring.png)
+![ubuntulab](docs/images/grafana-monitoring.png)
 
 ---
 
@@ -34,6 +34,8 @@
 3. n8n kemudian meneruskan alert ke:
    - **Telegram**
    - **Database MariaDB (log alert)**
+
+![ubuntulab](docs/images/arsitektur.png)
 
 ---
 
@@ -73,13 +75,19 @@ docker compose up -d
 
 Server down → Prometheus → n8n → Telegram + Database log
 
-![breastguard](docs/images/workflow.png)
+![ubuntulab](docs/images/workflow.png)
 
 ---
 
-## Sumber:
-- https://github.com/prometheus/node_exporter/releases
-- https://github.com/prometheus/prometheus/releases/
+## Sumber Resmi Rilis Software
+
+- **Node Exporter Releases**  
+  [https://github.com/prometheus/node_exporter/releases](https://github.com/prometheus/node_exporter/releases)  
+  Halaman rilis resmi Node Exporter untuk download binary atau source code terbaru.
+
+- **Prometheus Releases**  
+  [https://github.com/prometheus/prometheus/releases/](https://github.com/prometheus/prometheus/releases/)  
+  Halaman rilis resmi Prometheus untuk download binary atau source code terbaru.
 
 ---
 
@@ -87,3 +95,4 @@ Server down → Prometheus → n8n → Telegram + Database log
 
 Hak cipta © 2026 Farell Kurniawan. Semua hak dilindungi undang-undang.  
 Distribusi dan penggunaan kode ini diizinkan sesuai dengan ketentuan lisensi **MIT**.
+
