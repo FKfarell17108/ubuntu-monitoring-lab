@@ -54,7 +54,28 @@ git clone https://github.com/FKfarell17108/ubuntu-monitoring-lab.git
 cd ubuntu-monitoring-lab
 ```
    
-2. **Run Docker Compose**
+2. **Docker Compose for n8n**
+```bash
+version: "3"
+
+services:
+  n8n:
+    image: n8nio/n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=035926
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - WEBHOOK_TUNNEL_URL=http://localhost:5678
+    volumes:
+      - ./n8n-data:/home/node/.n8n
+```
+
+3. **Run Docker Compose**
 ```bash
 docker compose up -d
 ```
@@ -75,6 +96,7 @@ docker compose up -d
 
 Copyright © 2026 Farell Kurniawan. All rights reserved.  
 Distribution and use of this code is permitted under the terms of the **MIT** license.
+
 
 
 
